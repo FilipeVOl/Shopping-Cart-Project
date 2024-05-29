@@ -4,7 +4,7 @@ import minus from "../assets/minus.svg";
 import { ShopContext } from "../context/ShopContext";
 
 const Posts = ({ data }) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState({});
 
   const [CartItems, setCartItems] = useContext(ShopContext);
 
@@ -23,19 +23,13 @@ const Posts = ({ data }) => {
 
   const HandleChange = (id, e) => {
     const newValue = e.target.value;
-    value[id] = newValue[id] > 1 ? Number(newValue) : 0;
-    setValue(value);
-  };
-
-
-  const calculatePrice = (id) => {
-    const itemValue = data[id] ? data[id].price : 0;
-    const itemInput = value[id] || 0;
-    return itemValue * itemInput;
+    setValue(prevValue => ({
+      ...prevValue,
+      [id]: newValue > 1 ? Number(newValue) : 0
+    }))
   };
 
   useEffect(() => {
-    console.log(CartItems);
   }, [CartItems]);
 
   return (
@@ -49,7 +43,6 @@ const Posts = ({ data }) => {
               <img src={item.image} alt={item.title} className="w-20" />
               <p>{item.title}</p>
               <p>{`R$ ${item.price}`}</p>
-              <p>{`Total: ${calculatePrice(index)}`}</p>
               <p>{`Category: ${item.category}`}</p>
               <p>{`Rating: ${item.rating.rate} / Count: ${item.rating.count}`}</p>
               <form>

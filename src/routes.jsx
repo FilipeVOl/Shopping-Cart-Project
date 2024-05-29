@@ -12,9 +12,10 @@ import Cart from "./pages/Cart";
 export function Router() {
 
     const [CartItems, setCartItems] = useState([]);
+    const { value, setValue } = useState(0);
 
     return (
-        <ShopContext.Provider value={[CartItems, setCartItems]}>
+        <ShopContext.Provider value={[CartItems, setCartItems, value, setValue]}>
         <Routes>
             <Route path="/" element={<DefaultLayout />}>
                 <Route index element={<Home />} />

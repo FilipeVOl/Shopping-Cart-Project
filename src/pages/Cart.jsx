@@ -1,10 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import BigCart from "../assets/bigCart.svg";
 import { ShopContext } from "../context/ShopContext";
 
 const Cart = () => {
 
-    const [cartItems, setCartItems] = useContext(ShopContext)
+    const [ cartItems, setCartItems ] = useContext(ShopContext)
+    const { value, setValue } = useContext(ShopContext)
+
+
+    const calculatePrice = (id) => {
+      const itemValue = cartItems.price;
+      const itemInput = value[id] || 0;
+      console.log(value[id])
+      return itemValue * itemInput;
+    };
 
   return (
     <div className="h-[90vh] flex flex-row">
@@ -17,7 +26,7 @@ const Cart = () => {
         </p>
         </div>
 
-        <div className="w-2/4 pr-32 pt-32 gap-10 flex flex-col">
+        <div className="w-2/4 pr-32 pt-32 gap-10 flex">
                 <h1>Items in your cart:</h1>
                 <ul className="flex flex-col gap-4">
                     {cartItems.map((item, index) => {
@@ -26,7 +35,7 @@ const Cart = () => {
                             className="flex flex-col gap-8 border-2 p-4 justify-center items-center">
                                 {console.log(item.title)}
                                 <p className="">{item.title}</p>
-                                <p>{item.price}</p>
+                                <p>{calculatePrice(item.price)}</p>
                             </li>
                         )
                     })}
