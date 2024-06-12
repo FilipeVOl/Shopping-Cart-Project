@@ -8,17 +8,30 @@ const Posts = ({ data }) => {
 
   const [CartItems, setCartItems] = useContext(ShopContext);
 
-  const Increment = (id) => {
+  const Increment = (id, obj) => {
+    const objeto = obj[id]
+    if (objeto) {
+    objeto.quantity = (objeto.quantity || 0) + 1
+    }
     setValue((value) => ({
       ...value,
       [id]: (value[id] || 0) + 1,
     }));
+
   };
-  const Decrement = (id) => {
+  const Decrement = (id, obj) => {
+    const objeto = obj[id]
+    if (objeto) {
+      objeto.quantity = (objeto.quantity) - 1 
+    } {
+      objeto.quantity = 0
+    }
     setValue((value) => ({
       ...value,
       [id]: value[id] > 0 ? value[id] - 1 : 0,
     }));
+
+
   };
 
   const HandleChange = (id, e) => {
@@ -28,6 +41,15 @@ const Posts = ({ data }) => {
       [id]: newValue > 1 ? Number(newValue) : 0
     }))
   };
+
+  const validateConfirm = (id, e) => {
+    if (e > 0) {
+      setCartItems(prevItems => [...prevItems, data[id]])
+
+      } else {
+        alert("Please, select a quantity greater than 0")
+    }
+  }
 
   useEffect(() => {
   }, [CartItems]);
@@ -51,7 +73,7 @@ const Posts = ({ data }) => {
                     src={minus}
                     alt="minus"
                     className="h-4"
-                    onClick={() => Decrement(index)}
+                    onClick={() => Decrement(index, data)}
                   />
                   <input
                     type="number"
@@ -64,13 +86,14 @@ const Posts = ({ data }) => {
                     src={plus}
                     alt="plus"
                     className="h-4"
-                    onClick={() => Increment(index)}
+                    onClick={() => Increment(index, data)
+                    }
                   />
                 </div>
               </form>
               <button
                 onClick={() => {
-                  setCartItems(prevItems => [...prevItems, data[index]])
+                  validateConfirm(index, value[index]);
                 }}
               >
                 Comprar

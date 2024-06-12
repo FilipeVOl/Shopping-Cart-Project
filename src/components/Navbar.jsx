@@ -9,10 +9,6 @@ const Navbar = () => {
 
   const [cartItems, setCartItems] = useContext(ShopContext)
 
-  useEffect(() => {
-    console.log(cartItems)
-  }, [cartItems])
-
   return (
     <div>
       <div className='w-full h-24 border-2 bg-blue-300 flex justify-around items-center text-black'>
