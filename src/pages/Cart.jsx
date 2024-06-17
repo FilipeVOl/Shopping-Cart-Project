@@ -10,7 +10,7 @@ const Cart = () => {
 
     const calculatePrice = (id, price, quant) => {
       console.log(cartItems)
-      const total = cartItems.reduce((total) => total + price * quant, 0);
+      const total = cartItems.reduce((_e) => price * quant, 0);
       return total;
     };
 

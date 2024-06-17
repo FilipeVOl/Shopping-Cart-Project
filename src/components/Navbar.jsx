@@ -20,7 +20,7 @@ const Navbar = () => {
           <img src={shoppingMall} alt="Shopping Mall" />
           <h1>Shopping Mall</h1>
         </Link>
-        <Link to="/cart" className='flex flex-row h-1/3 gap-4 '>
+        <Link to="/cart" className='flex flex-row h-1/3 gap-4 hover:scale-110 transform transition duration-500 ease-in-out'>
           <img src={shoppingCart} alt="Shopping Cart" className='relative'/>
         <span className={`${cartItems.length === 0 ? "hidden" : ""} rounded-full bg-red-400 w-2 h-2 absolute translate-x-5 -translate-y-[0.2rem]`}></span>
           <h1>Shopping Cart</h1>
