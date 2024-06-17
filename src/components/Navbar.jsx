@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className='w-full h-24 border-2 bg-blue-300 flex justify-around items-center text-black'>
+      <div className='w-full h-20 sm:h-24 border-2 bg-blue-300 flex justify-around items-center text-black'>
         <Link to="/" className='flex flex-row h-1/3 gap-4 hover:scale-110 transform transition duration-500 ease-in-out'>
           <img src={Home} alt="Home" />
           <h1>Home</h1>

@@ -56,7 +56,7 @@ const Posts = ({ data }) => {
 
   return (
     <div className="h-[10%] border-2 w-full">
-        <ul className="grid grid-cols-3">
+        <ul className="flex flex-col sm:grid sm:grid-cols-3">
           {Object.values(data).map((item, index) => (
             <li
               key={item.id}
